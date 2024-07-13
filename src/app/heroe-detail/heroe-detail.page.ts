@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { HeroesService } from '../shared/services/heroes.service';
 import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ThumbnailComponent } from '../shared/components/thumbnail/thumbnail.component';
 
 @Component({
   selector: 'app-heroe-detail',
   templateUrl: './heroe-detail.page.html',
   styleUrls: ['./heroe-detail.page.scss'],
   standalone: true,
-  imports: [IonicModule, RouterModule]
+  imports: [IonicModule, RouterModule, ThumbnailComponent]
 })
 export class HeroeDetailPage implements OnInit {
   id: string = ''

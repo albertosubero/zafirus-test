@@ -7,9 +7,7 @@
   <ion-list>
     @for (heroe of heroesList; track $index) {
       <ion-item [routerLink]="['/heroe-detail', heroe.id]">
-        <ion-thumbnail slot="start">
-          <img alt="Silhouette of mountains" [src]="getThumbnail(heroe.thumbnail)" />
-        </ion-thumbnail>
+        <app-thumbnail slot="start" [isThumbnail]="true" [thumbnail]="heroe.thumbnail" />
         <ion-label>{{ heroe.name }}</ion-label>
       </ion-item>
     }

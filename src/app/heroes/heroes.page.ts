@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { HeroesService } from '../shared/services/heroes.service';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
+import { ThumbnailComponent } from '../shared/components/thumbnail/thumbnail.component';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'heroes.page.html',
   styleUrls: ['heroes.page.scss'],
   standalone: true,
-  imports: [IonicModule, RouterModule],
+  imports: [IonicModule, RouterModule, ThumbnailComponent],
 })
 export class HeroesPage implements OnInit {
   heroesList: any[] = []
@@ -29,9 +30,5 @@ export class HeroesPage implements OnInit {
         console.error(err.error)
       }
     });
-  }
-
-  getThumbnail(thumbnail: { path: string, extension: string }) {
-    return `${thumbnail.path}.${thumbnail.extension}`
   }
 }
