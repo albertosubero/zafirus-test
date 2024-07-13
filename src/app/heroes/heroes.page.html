@@ -1,6 +1,6 @@
 <ion-header translucent="true">
   <ion-toolbar>
-    <ion-title>Header</ion-title>
+    <ion-title>Listado de Superheroes</ion-title>
   </ion-toolbar>
 </ion-header>
 @if (isLoading) {
@@ -16,5 +16,12 @@
           </ion-item>
         }
       </ion-list>
+      
+      @if (!heroesList.length) {
+        <h3>
+          <ion-text color="warning"><ion-icon name="warning"></ion-icon></ion-text>
+          <ion-text color="danger">&nbsp;Oops!, No hay informacion disponible!</ion-text>
+        </h3>
+      }
     }
 </ion-content>

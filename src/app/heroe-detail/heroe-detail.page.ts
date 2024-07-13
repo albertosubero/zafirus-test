@@ -15,6 +15,7 @@ import { CommonModule } from '@angular/common';
 export class HeroeDetailPage implements OnInit {
   id: string = ''
   heroe: any = {}
+  heroeAvailableInfo: any = {}
   isLoading: boolean = false
 
   constructor(private heroesService: HeroesService, private route: ActivatedRoute) {
@@ -31,6 +32,7 @@ export class HeroeDetailPage implements OnInit {
     .subscribe({
       next: (res) => {
         this.heroe = res.data.results[0]
+        this.getHeroeAvailableInfo()
         this.isLoading = false
       },
       error: (err) => {
@@ -38,5 +40,22 @@ export class HeroeDetailPage implements OnInit {
         this.isLoading = false
       }
     });
+  }
+
+  getHeroeAvailableInfo() {
+    this.heroeAvailableInfo = [
+      {
+        data: 'comics',
+        available: this.heroe.comics.available
+      },
+      {
+        data: 'series',
+        available: this.heroe.series.available
+      },
+      {
+        data: 'stories',
+        available: this.heroe.stories.available
+      }
+    ]
   }
 }

@@ -41,3 +41,12 @@ ion-toolbar {
     font-size: 28px;
   }
 }
+
+ion-badge {
+  color: white;
+  background-color: #0163aa;
+  --padding-end: 20px;
+  --padding-start: 20px;
+  min-width: 55px;
+  border-radius: 5px;
+}
