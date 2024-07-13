@@ -4,4 +4,11 @@
     <ion-title>{{ heroe.name }}</ion-title>
   </ion-toolbar>
 </ion-header>
-<app-thumbnail slot="start" [thumbnail]="heroe.thumbnail" />
+@if (isLoading) {
+  <ion-progress-bar  type="indeterminate"></ion-progress-bar>
+}
+<ion-content fullscreen="true" class="ion-padding">
+  @if (!isLoading) {
+    <app-thumbnail [thumbnail]="heroe.thumbnail" />
+  }
+</ion-content>

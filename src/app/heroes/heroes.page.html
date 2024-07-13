@@ -3,13 +3,18 @@
     <ion-title>Header</ion-title>
   </ion-toolbar>
 </ion-header>
+@if (isLoading) {
+  <ion-progress-bar  type="indeterminate"></ion-progress-bar>
+}
 <ion-content fullscreen="true" class="ion-padding">
-  <ion-list>
-    @for (heroe of heroesList; track $index) {
-      <ion-item [routerLink]="['/heroe-detail', heroe.id]">
-        <app-thumbnail slot="start" [isThumbnail]="true" [thumbnail]="heroe.thumbnail" />
-        <ion-label>{{ heroe.name }}</ion-label>
-      </ion-item>
+    @if (!isLoading) {
+      <ion-list>
+        @for (heroe of heroesList; track $index) {
+          <ion-item [routerLink]="['/heroe-detail', heroe.id]">
+            <app-thumbnail slot="start" [isThumbnail]="true" [thumbnail]="heroe.thumbnail" />
+            <ion-label>{{ heroe.name }}</ion-label>
+          </ion-item>
+        }
+      </ion-list>
     }
-  </ion-list>
 </ion-content>

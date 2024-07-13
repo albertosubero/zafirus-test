@@ -3,17 +3,19 @@ import { IonicModule } from '@ionic/angular';
 import { HeroesService } from '../shared/services/heroes.service';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { ThumbnailComponent } from '../shared/components/thumbnail/thumbnail.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-heroe-detail',
   templateUrl: './heroe-detail.page.html',
   styleUrls: ['./heroe-detail.page.scss'],
   standalone: true,
-  imports: [IonicModule, RouterModule, ThumbnailComponent]
+  imports: [CommonModule, IonicModule, RouterModule, ThumbnailComponent]
 })
 export class HeroeDetailPage implements OnInit {
   id: string = ''
   heroe: any = {}
+  isLoading: boolean = false
 
   constructor(private heroesService: HeroesService, private route: ActivatedRoute) {
     this.id = this.route.snapshot.params['id']
@@ -24,13 +26,16 @@ export class HeroeDetailPage implements OnInit {
   }
 
   getHeroeDetails() {
+    this.isLoading = true
     this.heroesService.getHeroeDetail(this.id)
     .subscribe({
       next: (res) => {
         this.heroe = res.data.results[0]
+        this.isLoading = false
       },
       error: (err) => {
         console.error(err.error)
+        this.isLoading = false
       }
     });
   }

@@ -13,6 +13,7 @@ import { ThumbnailComponent } from '../shared/components/thumbnail/thumbnail.com
 })
 export class HeroesPage implements OnInit {
   heroesList: any[] = []
+  isLoading: boolean = false
 
   constructor(private heroesService: HeroesService) {}
 
@@ -21,13 +22,16 @@ export class HeroesPage implements OnInit {
   }
 
   getHeroesList() {
+    this.isLoading = true
     this.heroesService.getHeroesList()
     .subscribe({
       next: (res) => {
         this.heroesList = res?.data?.results
+        this.isLoading = false
       },
       error: (err) => {
         console.error(err.error)
+        this.isLoading = false
       }
     });
   }
