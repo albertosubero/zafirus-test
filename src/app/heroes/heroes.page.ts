@@ -16,13 +16,17 @@ export class HeroesPage implements OnInit {
   constructor(private heroesService: HeroesService) {}
 
   ngOnInit() {
+    this.getHeroesList()
+  }
+
+  getHeroesList() {
     this.heroesService.getHeroesList()
     .subscribe({
       next: (res) => {
         this.heroesList = res?.data?.results
       },
       error: (err) => {
-        console.error(err.error);
+        console.error(err.error)
       }
     });
   }
