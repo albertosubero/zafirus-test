@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HeroesService } from '../shared/services/heroes.service';
 import { IonicModule } from '@ionic/angular';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { ThumbnailComponent } from '../shared/components/thumbnail/thumbnail.component';
+import { heroesI } from '../shared/interfaces/heroes.interface';
 
 @Component({
   selector: 'app-home',
@@ -12,10 +13,10 @@ import { ThumbnailComponent } from '../shared/components/thumbnail/thumbnail.com
   imports: [IonicModule, RouterModule, ThumbnailComponent],
 })
 export class HeroesPage implements OnInit {
-  heroesList: any[] = []
+  heroesList: heroesI[] = []
   isLoading: boolean = false
 
-  constructor(private heroesService: HeroesService) {}
+  constructor(private heroesService: HeroesService, private router: Router) {}
 
   ngOnInit() {
     this.getHeroesList()
@@ -34,5 +35,10 @@ export class HeroesPage implements OnInit {
         this.isLoading = false
       }
     });
+  }
+
+  setHeroeData(heroe: heroesI) {
+    this.heroesService.setHeroeData(heroe)
+    this.router.navigate(['heroe-detail'])
   }
 }

@@ -10,13 +10,13 @@
     @if (!isLoading) {
       <ion-list>
         @for (heroe of heroesList; track $index) {
-          <ion-item [routerLink]="['/heroe-detail', heroe.id]">
+          <ion-item (click)="setHeroeData(heroe)">
             <app-thumbnail slot="start" [isThumbnail]="true" [thumbnail]="heroe.thumbnail" />
             <ion-label>{{ heroe.name }}</ion-label>
           </ion-item>
         }
       </ion-list>
-      
+
       @if (!heroesList.length) {
         <h3>
           <ion-text color="warning"><ion-icon name="warning"></ion-icon></ion-text>

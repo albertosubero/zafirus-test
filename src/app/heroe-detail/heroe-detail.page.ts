@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { HeroesService } from '../shared/services/heroes.service';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { ThumbnailComponent } from '../shared/components/thumbnail/thumbnail.component';
 import { CommonModule } from '@angular/common';
+import { Subscription } from 'rxjs';
+import { heroeCustomData, heroesI } from '../shared/interfaces/heroes.interface';
 
 @Component({
   selector: 'app-heroe-detail',
@@ -12,18 +14,20 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule, IonicModule, RouterModule, ThumbnailComponent]
 })
-export class HeroeDetailPage implements OnInit {
+export class HeroeDetailPage implements OnDestroy {
   id: string = ''
-  heroe: any = {}
-  heroeAvailableInfo: any = {}
+  heroe!: heroesI
+  subscription!: Subscription
+  heroeAvailableInfo: heroeCustomData[] = []
   isLoading: boolean = false
 
-  constructor(private heroesService: HeroesService, private route: ActivatedRoute) {
-    this.id = this.route.snapshot.params['id']
-  }
-
-  ngOnInit() {
-    this.getHeroeDetails()
+  constructor(private heroesService: HeroesService) {
+    this.subscription = this.heroesService.heroe$.subscribe(data => {
+      this.heroe = data
+      if (this.heroe.id) {
+        this.getHeroeAvailableInfo()
+      }
+    })
   }
 
   getHeroeDetails() {
@@ -57,5 +61,9 @@ export class HeroeDetailPage implements OnInit {
         available: this.heroe.stories.available
       }
     ]
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe()
   }
 }
