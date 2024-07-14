@@ -9,7 +9,7 @@ import { heroesI } from '../interfaces/heroes.interface';
 export class HeroesService {
   //apiInfo
   apiUrl: string = 'https://gateway.marvel.com/v1/public/'
-  apiKey: string = '056499ce62ca3d57287c25e256833d5e'
+  apiKey: string = '056499ce62ca3d57287c25e256833d5ex'
   hash: string = 'abf5d87639a5cb57215a6144a1693a9b'
   ts: number = 1000
 
