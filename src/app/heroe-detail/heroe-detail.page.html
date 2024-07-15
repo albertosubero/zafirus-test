@@ -1,7 +1,7 @@
 <ion-header translucent="true">
   <ion-toolbar>
     <ion-icon [routerLink]="['/']" name="arrow-back-outline" color="white"></ion-icon>
-    <ion-title>{{ heroe.name || 'Heroe Info' }}</ion-title>
+    <ion-title>{{ heroe.name || 'general.heroe_info' | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
 @if (isLoading) {
@@ -18,17 +18,14 @@
           @for (info of heroeAvailableInfo; track $index) {
             <ion-item>
               <ion-badge slot="end" color="secondary">{{ info.available }}</ion-badge>
-              <ion-label>Cantidad de {{ info.data }} disponibles:</ion-label>
+              <ion-label>{{'general.available_item' | translate : {item: info.data} }}</ion-label>
             </ion-item>
           }
         }
       </ion-list>
       <!-- heroeAvailableInfo List ends's -->
     } @else {
-      <h3>
-        <ion-text color="warning"><ion-icon name="warning"></ion-icon></ion-text>
-        <ion-text color="danger">&nbsp;Oops!, No hay informacion disponible!</ion-text>
-      </h3>
+      <app-empty-data-message />
     }
   }
 </ion-content>
