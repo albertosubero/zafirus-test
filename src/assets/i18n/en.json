@@ -1,0 +1,8 @@
+{
+  "general": {
+    "heroes_list": "Superheroe's List",
+    "heroe_info": "Heroe Information",
+    "available_item": "Number of {{item}} available",
+    "empty_data_error": "Oops!, No information available!"
+  }
+}

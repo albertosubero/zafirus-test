@@ -4,13 +4,15 @@ import { IonicModule } from '@ionic/angular';
 import { Router, RouterModule } from '@angular/router';
 import { ThumbnailComponent } from '../shared/components/thumbnail/thumbnail.component';
 import { heroesI } from '../shared/interfaces/heroes.interface';
+import { TranslateModule } from '@ngx-translate/core';
+import { EmptyDataMessageComponent } from '../shared/components/empty-data-message/empty-data-message.component';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'heroes.page.html',
   styleUrls: ['heroes.page.scss'],
   standalone: true,
-  imports: [IonicModule, RouterModule, ThumbnailComponent],
+  imports: [IonicModule, RouterModule, ThumbnailComponent, EmptyDataMessageComponent, TranslateModule],
 })
 export class HeroesPage implements OnInit {
   heroesList: heroesI[] = []

@@ -6,13 +6,15 @@ import { ThumbnailComponent } from '../shared/components/thumbnail/thumbnail.com
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { heroeCustomData, heroesI } from '../shared/interfaces/heroes.interface';
+import { TranslateModule } from '@ngx-translate/core';
+import { EmptyDataMessageComponent } from '../shared/components/empty-data-message/empty-data-message.component';
 
 @Component({
   selector: 'app-heroe-detail',
   templateUrl: './heroe-detail.page.html',
   styleUrls: ['./heroe-detail.page.scss'],
   standalone: true,
-  imports: [CommonModule, IonicModule, RouterModule, ThumbnailComponent]
+  imports: [CommonModule, IonicModule, RouterModule, ThumbnailComponent, EmptyDataMessageComponent, TranslateModule]
 })
 export class HeroeDetailPage implements OnDestroy {
   id: string = ''

@@ -1,6 +1,6 @@
 <ion-header translucent="true">
   <ion-toolbar>
-    <ion-title>Listado de Superheroes</ion-title>
+    <ion-title>{{ 'general.heroes_list' | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
 @if (isLoading) {
@@ -18,10 +18,7 @@
       </ion-list>
 
       @if (!heroesList.length) {
-        <h3>
-          <ion-text color="warning"><ion-icon name="warning"></ion-icon></ion-text>
-          <ion-text color="danger">&nbsp;Oops!, No hay informacion disponible!</ion-text>
-        </h3>
+        <app-empty-data-message />
       }
     }
 </ion-content>
